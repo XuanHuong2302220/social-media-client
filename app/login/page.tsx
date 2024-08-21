@@ -20,7 +20,7 @@ const Login = () => {
   const router = useRouter();
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
+    router.push('/')
   };
 
   return (
@@ -36,7 +36,7 @@ const Login = () => {
                 width='full' className='z-20  py-2' 
                 {...register('username', { required: 'Username is required' })} 
                 />
-                {errors.username && <p>{errors.username.message}</p>}
+                {errors.username && <p className='text-red-600'>{errors.username.message}</p>}
               <CustomInput 
                 placeholder='password'
                 type='password' 
@@ -45,14 +45,16 @@ const Login = () => {
                 className='z-20  py-2' 
                 {...register('password', { required: 'Password is required' })}
                 />
-                {errors.password && <p>{errors.password.message}</p>}
+                {errors.password && <p className='text-red-600'>{errors.password.message}</p>}
               <div className='my-2'>
                 <CustomButton 
                   text='Login' 
                   width='1/4' 
                   textColor='white' 
                   bgColor='softPink' 
+                  type='submit'
                   IconComponent={FaLongArrowAltRight} 
+                  className='border-none'
                   />
               </div>
               <div>

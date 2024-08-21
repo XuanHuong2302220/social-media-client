@@ -2,7 +2,7 @@ import React from 'react'
 import { InputProps } from '@/types'
 
 const CustomInput = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ type, placeholder, bgColor, width, className, value, onChange, onBlur }: InputProps, ref) => {
+  ({ type, placeholder, bgColor, width, className, value, onChange, onBlur, ...rest }: InputProps, ref) => {
     return (
       <input
         type={type}
@@ -12,6 +12,7 @@ const CustomInput = React.forwardRef<HTMLInputElement, InputProps>(
         onChange={onChange}
         onBlur={onBlur}
         ref={ref}
+        {...rest}
       />
     );
   }
