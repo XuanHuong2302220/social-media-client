@@ -5,8 +5,8 @@ import cactus from '../../assets/background/cactus.png'
 import React from 'react'
 import { Logo, CustomInput, CustomButton } from '@/components'
 import { FaLongArrowAltRight } from "react-icons/fa";
-import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
+import useLogin from '@/api/login'
 
 interface FormData {
   username: string;
@@ -17,11 +17,14 @@ const Login = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
 
-  const router = useRouter();
+  const {login, loading, error} = useLogin();
 
   const onSubmit = (data: FormData) => {
-    router.push('/')
+    if(data){
+      login(data.username, data.password)
+    }
   };
+
 
   return (
     <div className='login_container flex justify-center items-center text-black'>
@@ -36,7 +39,11 @@ const Login = () => {
                 width='full' className='z-20  py-2' 
                 {...register('username', { required: 'Username is required' })} 
                 />
-                {errors.username && <p className='text-red-600'>{errors.username.message}</p>}
+                {(errors.username || error) && (
+                  <p className='text-red-600'>
+                    {errors.username?.message || error}
+                  </p>
+                )}
               <CustomInput 
                 placeholder='password'
                 type='password' 
@@ -50,11 +57,9 @@ const Login = () => {
                 <CustomButton 
                   text='Login' 
                   width='1/4' 
-                  textColor='white' 
-                  bgColor='softPink' 
                   type='submit'
                   IconComponent={FaLongArrowAltRight} 
-                  className='border-none'
+                  className='border-none bg-softPink text-white'
                   />
               </div>
               <div>
@@ -66,6 +71,7 @@ const Login = () => {
           </div>
           <Image src={char_login} alt='char_login'  className='absolute right-7 z-10' />
           <Image src={cactus} alt='cactus'  className='absolute right-0 bottom-5' />
+          
       </div>
     </div>
   )

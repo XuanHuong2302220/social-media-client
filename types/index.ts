@@ -12,12 +12,17 @@ export interface InputProps {
 
 export interface ButtonProps {
     width: string;
-    textColor: string;
-    bgColor: string;
+    textColor?: string;
+    bgColor?: string;
     IconComponent?: React.ComponentType;
     className?: string;
     onClick?: () => void;
     text: string;
     disabled?: boolean;
     type: 'button' | 'submit' | 'reset';
+}
+
+export interface AuthProps {
+    authUser: string;
+    setAuthUser: (value: string) => void;
 }

@@ -7,8 +7,7 @@ const CustomButton = ({width, textColor, bgColor, IconComponent, className, onCl
     <button 
       onClick={onClick} 
       type={type} 
-      className={`btn btn-${bgColor} w-${width}
-       py-3 rounded-3xl flex items-center justify-center gap-2 text-${textColor} ${className}`}
+      className={`btn bg-${bgColor} btn-${bgColor} w-${width} py-3 rounded-3xl flex items-center justify-center gap-2 text-${textColor} ${className}`}
       disabled={disabled}
     >
       {text}

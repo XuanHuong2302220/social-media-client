@@ -1,9 +1,13 @@
-import Image from "next/image";
+import { AuthProvider } from "@/context/authContext";
+import { AppProps } from "next/app";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export default function Home() {
+export default function Home({ Component, pageProps }: AppProps) {
   return (
-    <main>
-        hello
-    </main>
+    <AuthProvider>
+      <Component {...pageProps} />
+      <ToastContainer />
+    </AuthProvider>
   );
 }
